@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="VendinhasConsole"
+                   namespace="VendinhasConsole.Entidades">
+
+	<class name="Cliente" table="clientes">
+		<id name="Id" column="id">
+			<generator class="sequence">
+				<param name="sequence">clientes_seq</param>
+			</generator>
+		</id>
+
+		<property name="NomeCompleto"		column="nomeCompleto"		not-null="true" />
+		<property name="CPF"				column="cpf"				unique="true"			not-null="true" />
+		<property name="DataNascimento"		column="dataNascimento"		not-null="true" />
+		<property name="Email"				column="email" />
+
+		<bag name="Dividas"		lazy="false"			inverse="true"				cascade="all">	
+			<key column="idCliente" />
+			<one-to-many class="Divida" />
+		</bag>
+	</class>
+
+</hibernate-mapping>

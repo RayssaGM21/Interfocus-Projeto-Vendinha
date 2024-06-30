@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="VendinhasConsole"
+                   namespace="VendinhasConsole.Entidades">
+
+	<class name="Divida" table="dividas">
+		<id name="IdDivida" column="IdDividas">
+			<generator class="sequence">
+				<param name="sequence">dividas_seq</param>
+			</generator>
+		</id>
+		
+		<property name="Valor"			type="decimal"		column="valor"			not-null="true"/>	
+		<property name="Situacao"		type="boolean"		column="situacao"		not-null="true"/>	
+		<property name="DataCriacao"	type="timestamp"	column="dataCriacao"	not-null="true"/> 
+		<property name="DataPagamento"	type="date"			column="dataPagamento"	not-null="true"/>
+		<property name="Descricao"		type="string"		column="descricao"		length="200"		not-null="true"/>		
+		
+		<many-to-one name="Cliente" class="Cliente" fetch="join" column="idCliente" not-null="true" lazy="false"/>
+
+	</class>
+
+</hibernate-mapping>
